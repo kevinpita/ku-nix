@@ -1,5 +1,5 @@
 {
-  description = "Nix flake for kli, a fast keyboard-driven Kubernetes TUI";
+  description = "Nix flake for ku, a fast keyboard-driven Kubernetes TUI";
 
   nixConfig = {
     extra-substituters = [ "https://kevinpita.cachix.org" ];
@@ -14,7 +14,7 @@
   outputs = { self, nixpkgs, flake-utils }:
     let
       overlay = final: prev: {
-        kli = final.callPackage ./package.nix { };
+        ku = final.callPackage ./package.nix { };
       };
     in
     flake-utils.lib.eachDefaultSystem
@@ -27,18 +27,18 @@
         in
         {
           packages = {
-            default = pkgs.kli;
-            kli = pkgs.kli;
+            default = pkgs.ku;
+            ku = pkgs.ku;
           };
 
           apps = {
             default = {
               type = "app";
-              program = "${pkgs.kli}/bin/kli";
+              program = "${pkgs.ku}/bin/ku";
             };
-            kli = {
+            ku = {
               type = "app";
-              program = "${pkgs.kli}/bin/kli";
+              program = "${pkgs.ku}/bin/ku";
             };
           };
 

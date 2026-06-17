@@ -5,12 +5,12 @@
 }:
 
 buildGoModule (finalAttrs: {
-  pname = "kli";
+  pname = "ku";
   version = "0.1.5";
 
   src = fetchFromGitHub {
     owner = "bjarneo";
-    repo = "kli";
+    repo = "ku";
     tag = "v${finalAttrs.version}";
     hash = "sha256-pgcV0TxRg2brJXvuTUbiKzegYU0StV08kIyGf7VOeP8=";
   };
@@ -25,10 +25,10 @@ buildGoModule (finalAttrs: {
 
   meta = {
     description = "Fast, keyboard-driven Kubernetes TUI";
-    homepage = "https://github.com/bjarneo/kli";
-    changelog = "https://github.com/bjarneo/kli/releases/tag/v${finalAttrs.version}";
+    homepage = "https://github.com/bjarneo/ku";
+    changelog = "https://github.com/bjarneo/ku/releases/tag/v${finalAttrs.version}";
     maintainers = with lib.maintainers; [ kevinpita ];
-    mainProgram = "kli";
+    mainProgram = "ku";
     platforms = lib.platforms.unix;
   };
 })

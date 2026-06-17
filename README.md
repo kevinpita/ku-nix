@@ -1,22 +1,22 @@
-# kli-nix
+# ku-nix
 
-Always up-to-date Nix package for [kli](https://github.com/bjarneo/kli), a fast, keyboard-driven Kubernetes TUI.
+Always up-to-date Nix package for [ku](https://github.com/bjarneo/ku), a fast, keyboard-driven Kubernetes TUI.
 
 ## Quick Start
 
 ```bash
-nix run github:kevinpita/kli-nix
+nix run github:kevinpita/ku-nix
 ```
 
 ## Install
 
 ```bash
-nix profile install github:kevinpita/kli-nix
+nix profile install github:kevinpita/ku-nix
 ```
 
 ## Binary Cache
 
-Prebuilt `x86_64-linux` outputs are served from a [Cachix](https://www.cachix.org/) cache, so installing pulls the binary instead of compiling kli locally. The flake advertises the cache via `nixConfig`; the first `nix run`/`nix profile install` will ask to trust it. To opt in permanently:
+Prebuilt `x86_64-linux` outputs are served from a [Cachix](https://www.cachix.org/) cache, so installing pulls the binary instead of compiling ku locally. The flake advertises the cache via `nixConfig`; the first `nix run`/`nix profile install` will ask to trust it. To opt in permanently:
 
 ```bash
 cachix use kevinpita
@@ -26,7 +26,7 @@ cachix use kevinpita
 
 ### With the Cachix cache
 
-Add the cache config to your consuming flake so Nix can fetch prebuilt `kli` outputs:
+Add the cache config to your consuming flake so Nix can fetch prebuilt `ku` outputs:
 
 ```nix
 {
@@ -35,9 +35,9 @@ Add the cache config to your consuming flake so Nix can fetch prebuilt `kli` out
     extra-trusted-public-keys = [ "kevinpita.cachix.org-1:Cu9UtCDSfDq3/WDnI7N1N/LzAh90SPS+1R+nWao/hz0=" ];
   };
 
-  inputs.kli-nix.url = "github:kevinpita/kli-nix";
+  inputs.ku-nix.url = "github:kevinpita/ku-nix";
 
-  outputs = { kli-nix, nixpkgs, ... }:
+  outputs = { ku-nix, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -45,7 +45,7 @@ Add the cache config to your consuming flake so Nix can fetch prebuilt `kli` out
     {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
-          kli-nix.packages.${system}.default
+          ku-nix.packages.${system}.default
         ];
       };
     };
@@ -56,13 +56,13 @@ Run with `--accept-flake-config` when prompted, or opt in globally with `cachix 
 
 ### Without the Cachix cache
 
-Omit `nixConfig`; Nix will build `kli` locally if it is not already available from your configured substituters:
+Omit `nixConfig`; Nix will build `ku` locally if it is not already available from your configured substituters:
 
 ```nix
 {
-  inputs.kli-nix.url = "github:kevinpita/kli-nix";
+  inputs.ku-nix.url = "github:kevinpita/ku-nix";
 
-  outputs = { kli-nix, nixpkgs, ... }:
+  outputs = { ku-nix, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -70,7 +70,7 @@ Omit `nixConfig`; Nix will build `kli` locally if it is not already available fr
     {
       devShells.${system}.default = pkgs.mkShell {
         buildInputs = [
-          kli-nix.packages.${system}.default
+          ku-nix.packages.${system}.default
         ];
       };
     };
@@ -80,8 +80,8 @@ Omit `nixConfig`; Nix will build `kli` locally if it is not already available fr
 ## Development
 
 ```bash
-nix build .#kli
-./result/bin/kli --version
+nix build .#ku
+./result/bin/ku --version
 ```
 
 ## Updates

@@ -6,7 +6,7 @@ readonly GREEN='\033[0;32m'
 readonly YELLOW='\033[1;33m'
 readonly NC='\033[0m'
 
-readonly GITHUB_REPO="bjarneo/kli"
+readonly GITHUB_REPO="bjarneo/ku"
 readonly PACKAGE_FILE="package.nix"
 readonly FAKE_HASH="lib.fakeHash"
 
@@ -15,7 +15,7 @@ log_warn() { echo -e "${YELLOW}[WARN]${NC} $1"; }
 log_error() { echo -e "${RED}[ERROR]${NC} $1" >&2; }
 
 flake_ref() {
-    echo "path:$(pwd -P)#kli"
+    echo "path:$(pwd -P)#ku"
 }
 
 flake_path() {
@@ -157,11 +157,11 @@ refresh_hashes() {
 }
 
 verify_update() {
-    log_info "Building kli"
+    log_info "Building ku"
     nix build "$(flake_ref)" --print-build-logs
 
-    log_info "Checking kli version"
-    ./result/bin/kli --version
+    log_info "Checking ku version"
+    ./result/bin/ku --version
 }
 
 update_flake_lock() {
@@ -181,7 +181,7 @@ update_to_version() {
 
     cp "$PACKAGE_FILE" "$PACKAGE_FILE.bak"
 
-    log_info "Updating kli from $current_version to $new_version"
+    log_info "Updating ku from $current_version to $new_version"
     update_version "$new_version"
     refresh_hashes
     verify_update
